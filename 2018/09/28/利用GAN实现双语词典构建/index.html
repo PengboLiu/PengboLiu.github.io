@@ -79,17 +79,22 @@
 
 
 
-<meta name="description" content="LeetCode 26题与80题，两者很相似，都是在有序数组中去除重复项。题目如下： 26. Remove Duplicates from Sorted Array（删除排序数组中的重复项）  English：Given a sorted array nums, remove the duplicates in-place such that each element appear only on">
+<meta name="description" content="导读本文讨论了发表在ACL2017上的论文《Adversarial Training for Unsupervised Bilingual Lexicon Induction》，论文作者是来自清华大学的张檬博士、刘洋老师、栾焕博老师和孙茂松老师。  一 、研究目的在机器翻译领域，经常会用到双语词典作为监督信号。利用非平行语料构建双语词典是一件长期存在的任务。其实现方法一般需要跨语言信息（如种子双语">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[LeetCode 26 &amp; 80] Remove Duplicates from Sorted Array">
-<meta property="og:url" content="http://yoursite.com/2018/09/28/LeetCode-26-80-Remove-Duplicates-from-Sorted-Array/index.html">
+<meta property="og:title" content="利用GAN实现双语词典构建">
+<meta property="og:url" content="http://yoursite.com/2018/09/28/利用GAN实现双语词典构建/index.html">
 <meta property="og:site_name" content="PengboLiu&#39;s BLOG">
-<meta property="og:description" content="LeetCode 26题与80题，两者很相似，都是在有序数组中去除重复项。题目如下： 26. Remove Duplicates from Sorted Array（删除排序数组中的重复项）  English：Given a sorted array nums, remove the duplicates in-place such that each element appear only on">
+<meta property="og:description" content="导读本文讨论了发表在ACL2017上的论文《Adversarial Training for Unsupervised Bilingual Lexicon Induction》，论文作者是来自清华大学的张檬博士、刘洋老师、栾焕博老师和孙茂松老师。  一 、研究目的在机器翻译领域，经常会用到双语词典作为监督信号。利用非平行语料构建双语词典是一件长期存在的任务。其实现方法一般需要跨语言信息（如种子双语">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-28T06:31:07.783Z">
+<meta property="og:image" content="http://img.mp.itc.cn/upload/20170616/4e06b76f43db470586076bc23510339c_th.jpg">
+<meta property="og:image" content="http://yoursite.com/img/GAN.jpg">
+<meta property="og:image" content="http://yoursite.com/img/GAN公式.png">
+<meta property="og:image" content="http://img.mp.itc.cn/upload/20170616/695a0d4cfd0b4b35b54ef3bd4c2aaf0f_th.jpg">
+<meta property="og:updated_time" content="2018-09-28T09:05:37.571Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[LeetCode 26 &amp; 80] Remove Duplicates from Sorted Array">
-<meta name="twitter:description" content="LeetCode 26题与80题，两者很相似，都是在有序数组中去除重复项。题目如下： 26. Remove Duplicates from Sorted Array（删除排序数组中的重复项）  English：Given a sorted array nums, remove the duplicates in-place such that each element appear only on">
+<meta name="twitter:title" content="利用GAN实现双语词典构建">
+<meta name="twitter:description" content="导读本文讨论了发表在ACL2017上的论文《Adversarial Training for Unsupervised Bilingual Lexicon Induction》，论文作者是来自清华大学的张檬博士、刘洋老师、栾焕博老师和孙茂松老师。  一 、研究目的在机器翻译领域，经常会用到双语词典作为监督信号。利用非平行语料构建双语词典是一件长期存在的任务。其实现方法一般需要跨语言信息（如种子双语">
+<meta name="twitter:image" content="http://img.mp.itc.cn/upload/20170616/4e06b76f43db470586076bc23510339c_th.jpg">
 
 
 
@@ -119,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/28/LeetCode-26-80-Remove-Duplicates-from-Sorted-Array/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/28/利用GAN实现双语词典构建/"/>
 
 
 
 
 
-  <title>[LeetCode 26 & 80] Remove Duplicates from Sorted Array | PengboLiu's BLOG</title>
+  <title>利用GAN实现双语词典构建 | PengboLiu's BLOG</title>
   
 
 
@@ -252,7 +257,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/28/LeetCode-26-80-Remove-Duplicates-from-Sorted-Array/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/28/利用GAN实现双语词典构建/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Patrick Liu">
@@ -269,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[LeetCode 26 & 80] Remove Duplicates from Sorted Array</h1>
+          <h1 class="post-title" itemprop="name headline">利用GAN实现双语词典构建</h1>
         
 
         <div class="post-meta">
@@ -281,7 +286,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-28T12:58:30+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-28T17:04:15+08:00">
                 2018-09-28
               </time>
             
@@ -304,8 +309,30 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
+                  <a href="/categories/Deep-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Deep Learning</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Deep-Learning/NLP/" itemprop="url" rel="index">
+                    <span itemprop="name">NLP</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Deep-Learning/NLP/GAN/" itemprop="url" rel="index">
+                    <span itemprop="name">GAN</span>
                   </a>
                 </span>
 
@@ -322,9 +349,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/09/28/LeetCode-26-80-Remove-Duplicates-from-Sorted-Array/#comments" itemprop="discussionUrl">
+                <a href="/2018/09/28/利用GAN实现双语词典构建/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/09/28/LeetCode-26-80-Remove-Duplicates-from-Sorted-Array/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/09/28/利用GAN实现双语词典构建/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -352,41 +379,14 @@
       
 
       
-        <p>LeetCode 26题与80题，两者很相似，都是在有序数组中去除重复项。题目如下：</p>
-<h2 id="26-Remove-Duplicates-from-Sorted-Array（删除排序数组中的重复项）"><a href="#26-Remove-Duplicates-from-Sorted-Array（删除排序数组中的重复项）" class="headerlink" title="26. Remove Duplicates from Sorted Array（删除排序数组中的重复项）"></a>26. Remove Duplicates from Sorted Array（删除排序数组中的重复项）</h2><blockquote>
-</blockquote>
-<p>English：<br>Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length.<br>Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.<br>中文：<br>给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。</p>
-<p>本题考察数组的基本操作。做法是维护两个指针，一个保留当前有效元素的长度，一个从前往后扫，然后跳过那些重复的元素。因为数组是有序的，所以重复元素一定相邻，不需要额外记录。时间复杂度是O(n)，空间复杂度O(1)。代码如下：</p>
-<pre><code>class Solution {
-public:
-  int removeDuplicates(vector&lt;int&gt;&amp; nums) {
-      if (nums.size() &lt;= 1) return nums.size();
+        <h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><p>本文讨论了发表在ACL2017上的论文《Adversarial Training for Unsupervised Bilingual Lexicon Induction》，论文作者是来自清华大学的张檬博士、刘洋老师、栾焕博老师和孙茂松老师。 </p>
+<h2 id="一-、研究目的"><a href="#一-、研究目的" class="headerlink" title="一 、研究目的"></a>一 、研究目的</h2><p>在机器翻译领域，经常会用到双语词典作为监督信号。利用非平行语料构建双语词典是一件长期存在的任务。其实现方法一般需要跨语言信息（如种子双语词典）作为监督信号来建立双语词汇之间的翻译关系。但是，在缺乏双语资源的小语种和专门领域来说，获取跨语言信息十分困难。本篇论文研究了如何利用对抗生成网络（GAN）实现双语词典构建任务。</p>
+<h2 id="二-、词嵌入"><a href="#二-、词嵌入" class="headerlink" title="二 、词嵌入"></a>二 、词嵌入</h2><h3 id="1、什么是词嵌入"><a href="#1、什么是词嵌入" class="headerlink" title="1、什么是词嵌入?"></a>1、什么是词嵌入?</h3><p>词嵌入（word embeddings）是指在自然语言处理中，把一个维数为所有词的数量的高维空间嵌入到一个维数低得多的连续向量空间中，每个单词或词组被映射为实数域上的向量，也叫词向量。</p>
+<h3 id="2、词嵌入的线性映射"><a href="#2、词嵌入的线性映射" class="headerlink" title="2、词嵌入的线性映射"></a>2、词嵌入的线性映射</h3><p>词向量可以获取语言中的规律。前人的工作发现利用两种语言的单语语料训练的词向量存在近似同态性。不明白什么是近似同态性没关系，论文给出了西班牙语和英语在词向量空间表现出的近似同态性，如下图：<br><img src="http://img.mp.itc.cn/upload/20170616/4e06b76f43db470586076bc23510339c_th.jpg" alt=""><br>所以说，可以通过一个线性映射把两个词向量空间联系起来，有了这个线性映射，就可以把一种语言的词向量迁移到另一种语言上。那么如何得到这个线性映射呢？<br>之前的工作基本上是用大量种子翻译词对对作为监督信号来有监督地学习这个线性映射，而在这篇paper中作者研究了一种不需要种子翻译词对的无监督方法，学习两个线性空间的映射。</p>
+<h3 id="3、Model"><a href="#3、Model" class="headerlink" title="3、Model"></a>3、Model</h3><p>说到无监督和语言生成，自然而然地想到最近两年十分火爆的生成对抗网络（GAN），先简单介绍一下GAN。</p>
+<h4 id="3-1、GAN"><a href="#3-1、GAN" class="headerlink" title="3.1、GAN"></a>3.1、GAN</h4><p>GAN 启发自博弈论中的二人零和博弈（two-player game），GAN 模型中的两位博弈方分别由生成式模型（generative model）和判别式模型（discriminative model）充当。生成模型 G 捕捉样本数据的分布，用服从某一分布（均匀分布，高斯分布等）的噪声 z 生成一个类似真实训练数据的样本，追求效果是越像真实样本越好；判别模型 D 是一个二分类器，估计一个样本来自于训练数据（而非生成数据）的概率，如果样本来自于真实的训练数据，D 输出大概率，否则，D 输出小概率。可以做如下类比：生成网络 G 好比假币制造团伙，专门制造假币，判别网络 D 好比警察，专门检测使用的货币是真币还是假币，G 的目标是想方设法生成和真币一样的货币，使得 D 判别不出来，D 的目标是想方设法检测出来 G 生成的假币。如图所示：<img src="/img/GAN.jpg" alt=""><br>在训练的过程中固定一方，更新另一方的网络权重，交替迭代，在这个过程中，双方都极力优化自己的网络，从而形成竞争对抗，直到双方达到一个动态的平衡（纳什均衡），此时生成模型 G 恢复了训练数据的分布（造出了和真实数据一模一样的样本），判别模型再也判别不出来结果，准确率为 50%，约等于乱猜。上述过程可以表述为如下公式：<br><img src="/img/GAN公式.png" alt=""><br>当固定生成网络 G 的时候，对于判别网络 D 的优化，可以这样理解：输入来自于真实数据，D 优化网络结构使自己输出 1，输入来自于生成数据，D 优化网络结构使自己输出 0；当固定判别网络 D 的时候，G 优化自己的网络使自己输出尽可能和真实数据一样的样本，并且使得生成的样本经过 D 的判别之后，D 输出高概率。</p>
+<h4 id="3-2、三种对抗模型"><a href="#3-2、三种对抗模型" class="headerlink" title="3.2、三种对抗模型"></a>3.2、三种对抗模型</h4><p>作者设计了三种生成对抗网络。如下图所示，图中，方块代表源语言词向量，圆点代表目标语言词向量。<br><img src="http://img.mp.itc.cn/upload/20170616/695a0d4cfd0b4b35b54ef3bd4c2aaf0f_th.jpg" alt=""><br>第一种（图a），也是最简单的一种，论文中将其命名为unidirectional transformation model。源语言词向量通过 G 映射到目标语言的词向量空间后，如果鉴别器 D 无法分辨出映射过来的词向量与原本属于目标语言的词向量，则说明映射 G 成功把两种语言的词向量空间联系起来了，如果 D 能够分辨，则 D 可以指导 G 如何改善。G 和 D 这种互相竞争、共同进步的关系使得本文的方法不依赖种子双语词典。<br>第二种（图b），双向转换模型（bidirectional transformation model）。生成器 G 将源语言词向量映射到目标语言的词向量空间中，G 的转置也能够将目标语言词向量映射回源语言的词向量空间中去。<br>第三种（图c），对抗自编码模型（adversarial autoencoder model）。生成器 G 将源语言词向量映射到目标语言的词向量空间中输出后，利用 G 的转置将映射回去以重构源语言词向量。将源语言词向量与重构的词向量进行相似度计算（cosine 夹角）加入到生成器的损失函数中。<br>在实验设计上，作者分别与基于解密的 MonoGiza 系统和基于种子翻译词对的Translation matrix (TM) 和 Isometric alignment (IA) 方法进行了比较，在实验过程中需要保证的是，这些方法输入的词向量与本文中模型的输入一致，均为利用 word2vec 的 CBOW 模型训练得到的词向量。结果发现，MonoGiza 系统的准确率很低，对抗自编码模型（adversarial autoencoder model）则能达到较高的准确率，而基于种子翻译词对的 TM 和 IA 方法若想达到与该模型相同的准确率，需要大量的种子翻译词对。除此之外，作者还探究了词向量维度对实验结果的影响以及大规模数据下模型的表现情况。</p>
 
-      int index = 1;
-      for (int i = 1; i &lt; nums.size(); i++){
-          if (nums[i] != nums[index - 1])
-              nums[index++] = nums[i];
-              }
-      return index;
-  }
- };
-</code></pre><h2 id="80-Remove-Duplicates-from-Sorted-Array-II（删除排序数组中的重复项-II）"><a href="#80-Remove-Duplicates-from-Sorted-Array-II（删除排序数组中的重复项-II）" class="headerlink" title="80. Remove Duplicates from Sorted Array II（删除排序数组中的重复项 II）"></a>80. Remove Duplicates from Sorted Array II（删除排序数组中的重复项 II）</h2><blockquote>
-<p>English：<br>Given a sorted array nums, remove the duplicates in-place such that duplicates appeared at most twice and return the new length.<br>Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.<br>中文：<br>给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素最多出现两次，返回移除后数组的新长度。<br>不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。</p>
-</blockquote>
-<p>和26题很相似，唯一的区别是允许每个元素最多出现两次，思路和26题是相同的，只需要将其中的1改为2即可。类似的，如果有其他的题目要求“允许每个元素最多出现n次”，将1改为n即可。代码如下：  </p>
-<pre><code>class Solution {
-public:
-  int removeDuplicates(vector&lt;int&gt;&amp; nums) {
-      if (nums.size() &lt;= 2) return nums.size();
-      int index = 2;
-      for (int i = 2; i &lt; nums.size(); i++){
-          if (nums[i] != nums[index - 2])
-              nums[index++] = nums[i];
-              }
-      return index;
-    }
-  };
-</code></pre>
       
     </div>
     
@@ -410,8 +410,8 @@ public:
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/28/100-numpy-exercises/" rel="next" title="100 numpy exercises ">
-                <i class="fa fa-chevron-left"></i> 100 numpy exercises 
+              <a href="/2018/09/28/LeetCode-26-80-Remove-Duplicates-from-Sorted-Array/" rel="next" title="[LeetCode 26 & 80] Remove Duplicates from Sorted Array">
+                <i class="fa fa-chevron-left"></i> [LeetCode 26 & 80] Remove Duplicates from Sorted Array
               </a>
             
           </div>
@@ -419,10 +419,6 @@ public:
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/28/利用GAN实现双语词典构建/" rel="prev" title="利用GAN实现双语词典构建">
-                利用GAN实现双语词典构建 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -569,7 +565,7 @@ public:
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#26-Remove-Duplicates-from-Sorted-Array（删除排序数组中的重复项）"><span class="nav-number">1.</span> <span class="nav-text">26. Remove Duplicates from Sorted Array（删除排序数组中的重复项）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#80-Remove-Duplicates-from-Sorted-Array-II（删除排序数组中的重复项-II）"><span class="nav-number">2.</span> <span class="nav-text">80. Remove Duplicates from Sorted Array II（删除排序数组中的重复项 II）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#导读"><span class="nav-number">1.</span> <span class="nav-text">导读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一-、研究目的"><span class="nav-number">2.</span> <span class="nav-text">一 、研究目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-、词嵌入"><span class="nav-number">3.</span> <span class="nav-text">二 、词嵌入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、什么是词嵌入"><span class="nav-number">3.1.</span> <span class="nav-text">1、什么是词嵌入?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、词嵌入的线性映射"><span class="nav-number">3.2.</span> <span class="nav-text">2、词嵌入的线性映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、Model"><span class="nav-number">3.3.</span> <span class="nav-text">3、Model</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1、GAN"><span class="nav-number">3.3.1.</span> <span class="nav-text">3.1、GAN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2、三种对抗模型"><span class="nav-number">3.3.2.</span> <span class="nav-text">3.2、三种对抗模型</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -739,9 +735,9 @@ public:
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/09/28/LeetCode-26-80-Remove-Duplicates-from-Sorted-Array/';
-          this.page.identifier = '2018/09/28/LeetCode-26-80-Remove-Duplicates-from-Sorted-Array/';
-          this.page.title = '[LeetCode 26 & 80] Remove Duplicates from Sorted Array';
+          this.page.url = 'http://yoursite.com/2018/09/28/利用GAN实现双语词典构建/';
+          this.page.identifier = '2018/09/28/利用GAN实现双语词典构建/';
+          this.page.title = '利用GAN实现双语词典构建';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://Patrick.disqus.com/embed.js';
