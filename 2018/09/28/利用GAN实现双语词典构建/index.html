@@ -79,22 +79,22 @@
 
 
 
-<meta name="description" content="导读本文讨论了发表在ACL2017上的论文《Adversarial Training for Unsupervised Bilingual Lexicon Induction》，论文作者是来自清华大学的张檬博士、刘洋老师、栾焕博老师和孙茂松老师。  一 、研究目的在机器翻译领域，经常会用到双语词典作为监督信号。利用非平行语料构建双语词典是一件长期存在的任务。其实现方法一般需要跨语言信息（如种子双语">
+<meta name="description" content="导读本文讨论了发表在ACL2017上的论文《Adversarial Training for Unsupervised Bilingual Lexicon Induction》，论文作者是来自清华大学的张檬博士、刘洋老师、栾焕博老师和孙茂松老师。">
 <meta name="keywords" content="Deep Learning,NLP,GAN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用GAN实现双语词典构建">
 <meta property="og:url" content="http://yoursite.com/2018/09/28/利用GAN实现双语词典构建/index.html">
 <meta property="og:site_name" content="PengboLiu&#39;s BLOG">
-<meta property="og:description" content="导读本文讨论了发表在ACL2017上的论文《Adversarial Training for Unsupervised Bilingual Lexicon Induction》，论文作者是来自清华大学的张檬博士、刘洋老师、栾焕博老师和孙茂松老师。  一 、研究目的在机器翻译领域，经常会用到双语词典作为监督信号。利用非平行语料构建双语词典是一件长期存在的任务。其实现方法一般需要跨语言信息（如种子双语">
+<meta property="og:description" content="导读本文讨论了发表在ACL2017上的论文《Adversarial Training for Unsupervised Bilingual Lexicon Induction》，论文作者是来自清华大学的张檬博士、刘洋老师、栾焕博老师和孙茂松老师。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img.mp.itc.cn/upload/20170616/4e06b76f43db470586076bc23510339c_th.jpg">
 <meta property="og:image" content="http://yoursite.com/img/GAN.jpg">
 <meta property="og:image" content="http://yoursite.com/img/GAN公式.png">
 <meta property="og:image" content="http://img.mp.itc.cn/upload/20170616/695a0d4cfd0b4b35b54ef3bd4c2aaf0f_th.jpg">
-<meta property="og:updated_time" content="2018-09-28T09:17:29.666Z">
+<meta property="og:updated_time" content="2018-11-05T04:45:56.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用GAN实现双语词典构建">
-<meta name="twitter:description" content="导读本文讨论了发表在ACL2017上的论文《Adversarial Training for Unsupervised Bilingual Lexicon Induction》，论文作者是来自清华大学的张檬博士、刘洋老师、栾焕博老师和孙茂松老师。  一 、研究目的在机器翻译领域，经常会用到双语词典作为监督信号。利用非平行语料构建双语词典是一件长期存在的任务。其实现方法一般需要跨语言信息（如种子双语">
+<meta name="twitter:description" content="导读本文讨论了发表在ACL2017上的论文《Adversarial Training for Unsupervised Bilingual Lexicon Induction》，论文作者是来自清华大学的张檬博士、刘洋老师、栾焕博老师和孙茂松老师。">
 <meta name="twitter:image" content="http://img.mp.itc.cn/upload/20170616/4e06b76f43db470586076bc23510339c_th.jpg">
 
 
@@ -413,7 +413,7 @@
       
 
       
-        <h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><p>本文讨论了发表在ACL2017上的论文《Adversarial Training for Unsupervised Bilingual Lexicon Induction》，论文作者是来自清华大学的张檬博士、刘洋老师、栾焕博老师和孙茂松老师。 </p>
+        <h2 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h2><p>本文讨论了发表在ACL2017上的论文《Adversarial Training for Unsupervised Bilingual Lexicon Induction》，论文作者是来自清华大学的张檬博士、刘洋老师、栾焕博老师和孙茂松老师。<br><a id="more"></a> </p>
 <h2 id="一-、研究目的"><a href="#一-、研究目的" class="headerlink" title="一 、研究目的"></a>一 、研究目的</h2><p>在机器翻译领域，经常会用到双语词典作为监督信号。利用非平行语料构建双语词典是一件长期存在的任务。其实现方法一般需要跨语言信息（如种子双语词典）作为监督信号来建立双语词汇之间的翻译关系。但是，在缺乏双语资源的小语种和专门领域来说，获取跨语言信息十分困难。本篇论文研究了如何利用对抗生成网络（GAN）实现双语词典构建任务。</p>
 <h2 id="二-、词嵌入"><a href="#二-、词嵌入" class="headerlink" title="二 、词嵌入"></a>二 、词嵌入</h2><h3 id="1、什么是词嵌入"><a href="#1、什么是词嵌入" class="headerlink" title="1、什么是词嵌入?"></a>1、什么是词嵌入?</h3><p>词嵌入（word embeddings）是指在自然语言处理中，把一个维数为所有词的数量的高维空间嵌入到一个维数低得多的连续向量空间中，每个单词或词组被映射为实数域上的向量，也叫词向量。</p>
 <h3 id="2、词嵌入的线性映射"><a href="#2、词嵌入的线性映射" class="headerlink" title="2、词嵌入的线性映射"></a>2、词嵌入的线性映射</h3><p>词向量可以获取语言中的规律。前人的工作发现利用两种语言的单语语料训练的词向量存在近似同态性。不明白什么是近似同态性没关系，论文给出了西班牙语和英语在词向量空间表现出的近似同态性，如下图：<br><img src="http://img.mp.itc.cn/upload/20170616/4e06b76f43db470586076bc23510339c_th.jpg" alt=""><br>所以说，可以通过一个线性映射把两个词向量空间联系起来，有了这个线性映射，就可以把一种语言的词向量迁移到另一种语言上。那么如何得到这个线性映射呢？<br>之前的工作基本上是用大量种子翻译词对对作为监督信号来有监督地学习这个线性映射，而在这篇paper中作者研究了一种不需要种子翻译词对的无监督方法，学习两个线性空间的映射。</p>
