@@ -88,7 +88,10 @@
 <meta property="og:description" content="论文概述这篇文章提出了一个基于RNN的模型，来完成抽取式自动文本摘要任务。模型公式具有可解释性，并且可以利用已有的abstractive summary数据训练我们的extractive model。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/2018-11-14-1.png">
-<meta property="og:updated_time" content="2018-11-13T16:15:37.221Z">
+<meta property="og:image" content="http://yoursite.com/images/2018-11-14-2.png">
+<meta property="og:image" content="http://yoursite.com/images/2018-11-14-3.png">
+<meta property="og:image" content="http://yoursite.com/images/2018-11-14-4.png">
+<meta property="og:updated_time" content="2018-11-13T16:18:21.656Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[论文笔记] 抽取式自动文本摘要模型——SummaRuNNer">
 <meta name="twitter:description" content="论文概述这篇文章提出了一个基于RNN的模型，来完成抽取式自动文本摘要任务。模型公式具有可解释性，并且可以利用已有的abstractive summary数据训练我们的extractive model。">
@@ -432,7 +435,7 @@
 <li>$s_j$是第$j$个位置的动态摘要表示，这里提出如下公式计算动态摘要表示：<br>$$\mathbf { s } _ { j } = \sum _ { i = 1 } ^ { j - 1 } \mathbf { h } _ { i } P \left( y _ { i } = 1 | \mathbf { h } _ { i } , \mathbf { s } _ { i } , \mathbf { d } \right)$$</li>
 <li>${ p } _ { j } ^ { a }$是绝对位置向量（absolute positional embeddings），${ p } _ { j } ^ { r }$是相对位置向量（relative positional embeddings）  </li>
 </ul>
-<p>通过分类层的公式计算，我们可以预测每句话被选中到摘要的概率。<br>到此为止，整个模型的架构已经全部搭建完成，如下图，就是SummaRuNNer的模型结构：</p>
+<p>通过分类层的公式计算，我们可以预测每句话被选中到摘要的概率。<br>到此为止，整个模型的架构已经全部搭建完成，如下图，就是SummaRuNNer的模型结构：<br><img src="/images/2018-11-14-2.png" alt="avatar"></p>
 <h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><p>损失函数（loss function）如下：<br>$l ( \mathbf { W } , \mathbf { b } ) = - \sum _ { d = 1 } ^ { N }\sum _ { j = 1 } ^ { N_d } ( y _ { j } ^ { d } \log P \left( y _ { j } ^ { d } = 1 | \mathbf { h } _ { j } ^ { d } , \mathbf { s } _ { j } ^ { d } , \mathbf { d } _ { d } \right) \\ +\left( 1 - y _ { j } ^ { d } \right) \log \left( 1 - P \left( y _ { j } ^ { d } = 1 | \mathbf { h } _ { j } ^ { d } , \mathbf { s } _ { j } ^ { d } , \mathbf { d } _ { d } \right) \right)$   </p>
 <p>其实就是一个负对数似然（negative log-likelihood），我们的目标就是优化损失函数，使其最小。</p>
 <h3 id="Extractive-Training"><a href="#Extractive-Training" class="headerlink" title="Extractive Training"></a>Extractive Training</h3><p>但是目前很多文本摘要数据集的摘要部分都是人为概括出来的，所以不能直接用于SummaRuNNer这个模型的抽取式训练。论文中使用贪心算法来抽取文章的句子添加到训练时使用的参考文摘里。</p>
@@ -452,7 +455,7 @@
 <li>使用了gradient clipping</li>
 <li>基于验证集损失的early stopping</li>
 </ul>
-<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p>略</p>
+<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p><img src="/images/2018-11-14-3.png" alt="avatar"><br><img src="/images/2018-11-14-4.png" alt="avatar"></p>
 
       
     </div>
