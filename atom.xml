@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-11-13T04:01:51.198Z</updated>
+  <updated>2018-11-13T04:14:22.395Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://yoursite.com/2018/11/13/%5B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%5D%20%E6%8A%BD%E5%8F%96%E5%BC%8F%E8%87%AA%E5%8A%A8%E6%96%87%E6%9C%AC%E6%91%98%E8%A6%81%E6%A8%A1%E5%9E%8B%E2%80%94%E2%80%94SummaRuNNer/"/>
     <id>http://yoursite.com/2018/11/13/[论文笔记] 抽取式自动文本摘要模型——SummaRuNNer/</id>
     <published>2018-11-13T03:31:13.000Z</published>
-    <updated>2018-11-13T04:01:51.198Z</updated>
+    <updated>2018-11-13T04:14:22.395Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="论文概述"><a href="#论文概述" class="headerlink" title="论文概述"></a>论文概述</h2><p>这篇文章提出了一个基于RNN的模型，来完成抽取式自动文本摘要任务。模型公式具有可解释性，并且可以利用已有的abstractive summary数据训练我们的extractive model。</p><a id="more"></a> <h2 id="SummaRuNNer模型"><a href="#SummaRuNNer模型" class="headerlink" title="SummaRuNNer模型"></a>SummaRuNNer模型</h2><p>作者把抽取式摘要（extractive summarization）问题转化为一个序列分类（sequence classification）问题：对文章的每句话都做一个二分类，被选中为摘要的一部分就标注为1，未被选中就标注为0。当然了，因为使用了RNN，每次做分类的时候，都会考虑之前句子的分类情况。 </p><h3 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h3><p>本模型使用的是RNN的变体——GRU。$u$被称作update gate，$r$被称作reset gate，$W$和$b$是模型需要训练的参数，$h$是真实值隐状态（ real-valued hidden-state）。GRU的计算公式如下：<br>\begin{aligned} \mathbf { u } _ { j } &amp; = \sigma \left( \mathbf { W } _ { u x } \mathbf { x } _ { j } + \mathbf { W } _ { u h } \mathbf { h } _ { j - 1 } + \mathbf { b } _ { u } \right) \ \mathbf { r } _ { j } &amp; = \sigma \left( \mathbf { W } _ { r x } \mathbf { x } _ { j } + \mathbf { W } _ { r h } \mathbf { h } _ { j - 1 } + \mathbf { b } _ { r } \right) \ \mathbf { h } _ { j } ^ { \prime } &amp; = \tanh \left( \mathbf { W } _ { h x } \mathbf { x } _ { j } + \mathbf { W } _ { h h } \left( \mathbf { r } _ { j } \odot \mathbf { h } _ { j - 1 } \right) + \mathbf { b } _ { h } \right) \ \mathbf { h } _ { j } &amp; = \left( 1 - \mathbf { u } _ { j } \right) \odot \mathbf { h } _ { j } ^ { \prime } + \mathbf { u } _ { j } \odot \mathbf { h } _ { j - 1 } \end{aligned}</p><p>###文本表示###</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="论文概述"><a href="#论文概述" class="headerlink" title="论文概述"></a>论文概述</h2><p>这篇文章提出了一个基于RNN的模型，来完成抽取式自动文本摘要任务。模型公式具有可解释性，并且可以利用已有的abstractive summary数据训练我们的extractive model。</p><a id="more"></a> <h2 id="SummaRuNNer模型"><a href="#SummaRuNNer模型" class="headerlink" title="SummaRuNNer模型"></a>SummaRuNNer模型</h2><p>作者把抽取式摘要（extractive summarization）问题转化为一个序列分类（sequence classification）问题：对文章的每句话都做一个二分类，被选中为摘要的一部分就标注为1，未被选中就标注为0。当然了，因为使用了RNN，每次做分类的时候，都会考虑之前句子的分类情况。 </p><h3 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h3><p>本模型使用的是RNN的变体——GRU。$u$被称作update gate，$r$被称作reset gate，$W$和$b$是模型需要训练的参数，$h$是真实值隐状态（ real-valued hidden-state）。GRU的计算公式如下：<br>\begin{aligned} \mathbf { u } _ { j } &amp; = \sigma \left( \mathbf { W } _ { u x } \mathbf { x } _ { j } + \mathbf { W } _ { u h } \mathbf { h } _ { j - 1 } + \mathbf { b } _ { u } \right) \\ \mathbf { r } _ { j } &amp; = \sigma \left( \mathbf { W } _ { r x } \mathbf { x } _ { j } + \mathbf { W } _ { r h } \mathbf { h } _ { j - 1 } + \mathbf { b } _ { r } \right) \\ \mathbf { h } _ { j } ^ { \prime } &amp; = \tanh \left( \mathbf { W } _ { h x } \mathbf { x } _ { j } + \mathbf { W } _ { h h } \left( \mathbf { r } _ { j } \odot \mathbf { h } _ { j - 1 } \right) + \mathbf { b } _ { h } \right) \\ \mathbf { h } _ { j } &amp; = \left( 1 - \mathbf { u } _ { j } \right) \odot \mathbf { h } _ { j } ^ { \prime } + \mathbf { u } _ { j } \odot \mathbf { h } _ { j - 1 } \end{aligned}</p><h3 id="文本表示"><a href="#文本表示" class="headerlink" title="文本表示"></a>文本表示</h3>]]></content>
     
     <summary type="html">
     

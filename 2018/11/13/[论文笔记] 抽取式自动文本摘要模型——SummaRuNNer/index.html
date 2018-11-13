@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="PengboLiu&#39;s BLOG">
 <meta property="og:description" content="论文概述这篇文章提出了一个基于RNN的模型，来完成抽取式自动文本摘要任务。模型公式具有可解释性，并且可以利用已有的abstractive summary数据训练我们的extractive model。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-13T04:01:51.198Z">
+<meta property="og:updated_time" content="2018-11-13T04:14:22.395Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[论文笔记] 抽取式自动文本摘要模型——SummaRuNNer">
 <meta name="twitter:description" content="论文概述这篇文章提出了一个基于RNN的模型，来完成抽取式自动文本摘要任务。模型公式具有可解释性，并且可以利用已有的abstractive summary数据训练我们的extractive model。">
@@ -411,9 +411,8 @@
         <h2 id="论文概述"><a href="#论文概述" class="headerlink" title="论文概述"></a>论文概述</h2><p>这篇文章提出了一个基于RNN的模型，来完成抽取式自动文本摘要任务。模型公式具有可解释性，并且可以利用已有的abstractive summary数据训练我们的extractive model。</p>
 <a id="more"></a> 
 <h2 id="SummaRuNNer模型"><a href="#SummaRuNNer模型" class="headerlink" title="SummaRuNNer模型"></a>SummaRuNNer模型</h2><p>作者把抽取式摘要（extractive summarization）问题转化为一个序列分类（sequence classification）问题：对文章的每句话都做一个二分类，被选中为摘要的一部分就标注为1，未被选中就标注为0。当然了，因为使用了RNN，每次做分类的时候，都会考虑之前句子的分类情况。 </p>
-<h3 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h3><p>本模型使用的是RNN的变体——GRU。$u$被称作update gate，$r$被称作reset gate，$W$和$b$是模型需要训练的参数，$h$是真实值隐状态（ real-valued hidden-state）。GRU的计算公式如下：<br>\begin{aligned} \mathbf { u } _ { j } &amp; = \sigma \left( \mathbf { W } _ { u x } \mathbf { x } _ { j } + \mathbf { W } _ { u h } \mathbf { h } _ { j - 1 } + \mathbf { b } _ { u } \right) \ \mathbf { r } _ { j } &amp; = \sigma \left( \mathbf { W } _ { r x } \mathbf { x } _ { j } + \mathbf { W } _ { r h } \mathbf { h } _ { j - 1 } + \mathbf { b } _ { r } \right) \ \mathbf { h } _ { j } ^ { \prime } &amp; = \tanh \left( \mathbf { W } _ { h x } \mathbf { x } _ { j } + \mathbf { W } _ { h h } \left( \mathbf { r } _ { j } \odot \mathbf { h } _ { j - 1 } \right) + \mathbf { b } _ { h } \right) \ \mathbf { h } _ { j } &amp; = \left( 1 - \mathbf { u } _ { j } \right) \odot \mathbf { h } _ { j } ^ { \prime } + \mathbf { u } _ { j } \odot \mathbf { h } _ { j - 1 } \end{aligned}</p>
-<p>###文本表示###</p>
-
+<h3 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h3><p>本模型使用的是RNN的变体——GRU。$u$被称作update gate，$r$被称作reset gate，$W$和$b$是模型需要训练的参数，$h$是真实值隐状态（ real-valued hidden-state）。GRU的计算公式如下：<br>\begin{aligned} \mathbf { u } _ { j } &amp; = \sigma \left( \mathbf { W } _ { u x } \mathbf { x } _ { j } + \mathbf { W } _ { u h } \mathbf { h } _ { j - 1 } + \mathbf { b } _ { u } \right) \\ \mathbf { r } _ { j } &amp; = \sigma \left( \mathbf { W } _ { r x } \mathbf { x } _ { j } + \mathbf { W } _ { r h } \mathbf { h } _ { j - 1 } + \mathbf { b } _ { r } \right) \\ \mathbf { h } _ { j } ^ { \prime } &amp; = \tanh \left( \mathbf { W } _ { h x } \mathbf { x } _ { j } + \mathbf { W } _ { h h } \left( \mathbf { r } _ { j } \odot \mathbf { h } _ { j - 1 } \right) + \mathbf { b } _ { h } \right) \\ \mathbf { h } _ { j } &amp; = \left( 1 - \mathbf { u } _ { j } \right) \odot \mathbf { h } _ { j } ^ { \prime } + \mathbf { u } _ { j } \odot \mathbf { h } _ { j - 1 } \end{aligned}</p>
+<h3 id="文本表示"><a href="#文本表示" class="headerlink" title="文本表示"></a>文本表示</h3>
       
     </div>
     
@@ -611,7 +610,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#论文概述"><span class="nav-number">1.</span> <span class="nav-text">论文概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SummaRuNNer模型"><span class="nav-number">2.</span> <span class="nav-text">SummaRuNNer模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GRU"><span class="nav-number">2.1.</span> <span class="nav-text">GRU</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#论文概述"><span class="nav-number">1.</span> <span class="nav-text">论文概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SummaRuNNer模型"><span class="nav-number">2.</span> <span class="nav-text">SummaRuNNer模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GRU"><span class="nav-number">2.1.</span> <span class="nav-text">GRU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本表示"><span class="nav-number">2.2.</span> <span class="nav-text">文本表示</span></a></li></ol></li></ol></div>
             
 
           </div>
