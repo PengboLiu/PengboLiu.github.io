@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[论文笔记] 抽取式自动文本摘要模型——SummaRuNNer]]></title>
+    <url>%2F2018%2F11%2F13%2F%5B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%5D%20%E6%8A%BD%E5%8F%96%E5%BC%8F%E8%87%AA%E5%8A%A8%E6%96%87%E6%9C%AC%E6%91%98%E8%A6%81%E6%A8%A1%E5%9E%8B%E2%80%94%E2%80%94SummaRuNNer%2F</url>
+    <content type="text"><![CDATA[论文概述这篇文章提出了一个基于RNN的模型，来完成抽取式自动文本摘要任务。模型公式具有可解释性，并且可以利用已有的abstractive summary数据训练我们的extractive model。 SummaRuNNer模型作者把抽取式摘要（extractive summarization）问题转化为一个序列分类（sequence classification）问题：对文章的每句话都做一个二分类，被选中为摘要的一部分就标注为1，未被选中就标注为0。当然了，因为使用了RNN，每次做分类的时候，都会考虑之前句子的分类情况。 GRU本模型使用的是RNN的变体——GRU。$u$被称作update gate，$r$被称作reset gate，$W$和$b$是模型需要训练的参数，$h$是真实值隐状态（ real-valued hidden-state）。GRU的计算公式如下：\begin{aligned} \mathbf { u } _ { j } &amp; = \sigma \left( \mathbf { W } _ { u x } \mathbf { x } _ { j } + \mathbf { W } _ { u h } \mathbf { h } _ { j - 1 } + \mathbf { b } _ { u } \right) \ \mathbf { r } _ { j } &amp; = \sigma \left( \mathbf { W } _ { r x } \mathbf { x } _ { j } + \mathbf { W } _ { r h } \mathbf { h } _ { j - 1 } + \mathbf { b } _ { r } \right) \ \mathbf { h } _ { j } ^ { \prime } &amp; = \tanh \left( \mathbf { W } _ { h x } \mathbf { x } _ { j } + \mathbf { W } _ { h h } \left( \mathbf { r } _ { j } \odot \mathbf { h } _ { j - 1 } \right) + \mathbf { b } _ { h } \right) \ \mathbf { h } _ { j } &amp; = \left( 1 - \mathbf { u } _ { j } \right) \odot \mathbf { h } _ { j } ^ { \prime } + \mathbf { u } _ { j } \odot \mathbf { h } _ { j - 1 } \end{aligned} ###文本表示###]]></content>
+      <categories>
+        <category>Paper Notes</category>
+        <category>Summarization</category>
+      </categories>
+      <tags>
+        <tag>NLP</tag>
+        <tag>Summarization</tag>
+        <tag>Papers Notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[LeetCode 136] Single Number]]></title>
     <url>%2F2018%2F11%2F05%2F%5BLeetCode%20136%5D%20Single%20Number%2F</url>
     <content type="text"><![CDATA[给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。 题目描述 English：Given an array of integers, every element appears twice except for one. Find that single one.Note:Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory? 中文：给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。说明：你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？ 思路异或（^）的几个性质： 顺序无关：多个元素异或的结果与元素的顺序无关。 同一个数异或两次等于没有异或：如4 ^ 3 ^ 4 = 3。 个数与0异或的结果为其本身：如3 ^ 0 = 3。 了解了这些性质，这道题就很简单了。result初始值设为0，将数组中每个元素都与result作异或并更新result，最终result的值就是那个唯一只出现一次的元素了。代码如下： class Solution { public: int singleNumber(vector&lt;int&gt; &amp;nums) { int result = 0; for (auto num:nums) { result ^= num; } return result; } };]]></content>
@@ -12,20 +26,6 @@
         <tag>leetcode</tag>
         <tag>算法</tag>
         <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[利用GAN实现双语词典构建]]></title>
-    <url>%2F2018%2F09%2F28%2F%E5%88%A9%E7%94%A8GAN%E5%AE%9E%E7%8E%B0%E5%8F%8C%E8%AF%AD%E8%AF%8D%E5%85%B8%E6%9E%84%E5%BB%BA%2F</url>
-    <content type="text"><![CDATA[导读本文讨论了发表在ACL2017上的论文《Adversarial Training for Unsupervised Bilingual Lexicon Induction》，论文作者是来自清华大学的张檬博士、刘洋老师、栾焕博老师和孙茂松老师。 一 、研究目的在机器翻译领域，经常会用到双语词典作为监督信号。利用非平行语料构建双语词典是一件长期存在的任务。其实现方法一般需要跨语言信息（如种子双语词典）作为监督信号来建立双语词汇之间的翻译关系。但是，在缺乏双语资源的小语种和专门领域来说，获取跨语言信息十分困难。本篇论文研究了如何利用对抗生成网络（GAN）实现双语词典构建任务。 二 、词嵌入1、什么是词嵌入?词嵌入（word embeddings）是指在自然语言处理中，把一个维数为所有词的数量的高维空间嵌入到一个维数低得多的连续向量空间中，每个单词或词组被映射为实数域上的向量，也叫词向量。 2、词嵌入的线性映射词向量可以获取语言中的规律。前人的工作发现利用两种语言的单语语料训练的词向量存在近似同态性。不明白什么是近似同态性没关系，论文给出了西班牙语和英语在词向量空间表现出的近似同态性，如下图：所以说，可以通过一个线性映射把两个词向量空间联系起来，有了这个线性映射，就可以把一种语言的词向量迁移到另一种语言上。那么如何得到这个线性映射呢？之前的工作基本上是用大量种子翻译词对对作为监督信号来有监督地学习这个线性映射，而在这篇paper中作者研究了一种不需要种子翻译词对的无监督方法，学习两个线性空间的映射。 3、Model说到无监督和语言生成，自然而然地想到最近两年十分火爆的生成对抗网络（GAN），先简单介绍一下GAN。 3.1、GANGAN 启发自博弈论中的二人零和博弈（two-player game），GAN 模型中的两位博弈方分别由生成式模型（generative model）和判别式模型（discriminative model）充当。生成模型 G 捕捉样本数据的分布，用服从某一分布（均匀分布，高斯分布等）的噪声 z 生成一个类似真实训练数据的样本，追求效果是越像真实样本越好；判别模型 D 是一个二分类器，估计一个样本来自于训练数据（而非生成数据）的概率，如果样本来自于真实的训练数据，D 输出大概率，否则，D 输出小概率。可以做如下类比：生成网络 G 好比假币制造团伙，专门制造假币，判别网络 D 好比警察，专门检测使用的货币是真币还是假币，G 的目标是想方设法生成和真币一样的货币，使得 D 判别不出来，D 的目标是想方设法检测出来 G 生成的假币。如图所示：在训练的过程中固定一方，更新另一方的网络权重，交替迭代，在这个过程中，双方都极力优化自己的网络，从而形成竞争对抗，直到双方达到一个动态的平衡（纳什均衡），此时生成模型 G 恢复了训练数据的分布（造出了和真实数据一模一样的样本），判别模型再也判别不出来结果，准确率为 50%，约等于乱猜。上述过程可以表述为如下公式：当固定生成网络 G 的时候，对于判别网络 D 的优化，可以这样理解：输入来自于真实数据，D 优化网络结构使自己输出 1，输入来自于生成数据，D 优化网络结构使自己输出 0；当固定判别网络 D 的时候，G 优化自己的网络使自己输出尽可能和真实数据一样的样本，并且使得生成的样本经过 D 的判别之后，D 输出高概率。 3.2、三种对抗模型作者设计了三种生成对抗网络。如下图所示，图中，方块代表源语言词向量，圆点代表目标语言词向量。第一种（图a），也是最简单的一种，论文中将其命名为unidirectional transformation model。源语言词向量通过 G 映射到目标语言的词向量空间后，如果鉴别器 D 无法分辨出映射过来的词向量与原本属于目标语言的词向量，则说明映射 G 成功把两种语言的词向量空间联系起来了，如果 D 能够分辨，则 D 可以指导 G 如何改善。G 和 D 这种互相竞争、共同进步的关系使得本文的方法不依赖种子双语词典。第二种（图b），双向转换模型（bidirectional transformation model）。生成器 G 将源语言词向量映射到目标语言的词向量空间中，G 的转置也能够将目标语言词向量映射回源语言的词向量空间中去。第三种（图c），对抗自编码模型（adversarial autoencoder model）。生成器 G 将源语言词向量映射到目标语言的词向量空间中输出后，利用 G 的转置将映射回去以重构源语言词向量。将源语言词向量与重构的词向量进行相似度计算（cosine 夹角）加入到生成器的损失函数中。在实验设计上，作者分别与基于解密的 MonoGiza 系统和基于种子翻译词对的Translation matrix (TM) 和 Isometric alignment (IA) 方法进行了比较，在实验过程中需要保证的是，这些方法输入的词向量与本文中模型的输入一致，均为利用 word2vec 的 CBOW 模型训练得到的词向量。结果发现，MonoGiza 系统的准确率很低，对抗自编码模型（adversarial autoencoder model）则能达到较高的准确率，而基于种子翻译词对的 TM 和 IA 方法若想达到与该模型相同的准确率，需要大量的种子翻译词对。除此之外，作者还探究了词向量维度对实验结果的影响以及大规模数据下模型的表现情况。]]></content>
-      <categories>
-        <category>Deep Learning for NLP</category>
-        <category>GAN</category>
-      </categories>
-      <tags>
-        <tag>Deep Learning</tag>
-        <tag>NLP</tag>
-        <tag>GAN</tag>
       </tags>
   </entry>
   <entry>
