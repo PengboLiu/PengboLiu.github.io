@@ -36,11 +36,11 @@
       <category term="Learning Rate" scheme="http://yoursite.com/categories/Paper-Notes/Learning-Rate/"/>
     
     
+      <category term="Papers Notes" scheme="http://yoursite.com/tags/Papers-Notes/"/>
+    
       <category term="Deep Learning" scheme="http://yoursite.com/tags/Deep-Learning/"/>
     
       <category term="Learning Rate" scheme="http://yoursite.com/tags/Learning-Rate/"/>
-    
-      <category term="Papers Notes" scheme="http://yoursite.com/tags/Papers-Notes/"/>
     
   </entry>
   
@@ -65,11 +65,11 @@
       <category term="Summarization" scheme="http://yoursite.com/categories/Paper-Notes/Summarization/"/>
     
     
-      <category term="Papers Notes" scheme="http://yoursite.com/tags/Papers-Notes/"/>
-    
       <category term="NLP" scheme="http://yoursite.com/tags/NLP/"/>
     
       <category term="Summarization" scheme="http://yoursite.com/tags/Summarization/"/>
+    
+      <category term="Papers Notes" scheme="http://yoursite.com/tags/Papers-Notes/"/>
     
   </entry>
   
