@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-11-29T15:20:58.622Z</updated>
+  <updated>2018-12-02T11:28:52.398Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>[论文笔记]学习率周期调整方法——Cyclical Learning Rates</title>
+    <title>[论文笔记] 学习率周期调整方法——Cyclical Learning Rates</title>
     <link href="http://yoursite.com/2018/11/27/%5B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%5D%20%5B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%5D%E5%AD%A6%E4%B9%A0%E7%8E%87%E5%91%A8%E6%9C%9F%E8%B0%83%E6%95%B4%E6%96%B9%E6%B3%95%E2%80%94%E2%80%94Cyclical%20Learning%20Rates/"/>
     <id>http://yoursite.com/2018/11/27/[论文笔记] [论文笔记]学习率周期调整方法——Cyclical Learning Rates/</id>
     <published>2018-11-27T14:12:50.000Z</published>
-    <updated>2018-11-29T15:20:58.622Z</updated>
+    <updated>2018-12-02T11:28:52.398Z</updated>
     
     <content type="html"><![CDATA[<h2 id="论文概述"><a href="#论文概述" class="headerlink" title="论文概述"></a>论文概述</h2><p>本文是论文《Cyclical Learning Rates for Training Neural Networks》的学习笔记。论文提出了学习率（learning rate）周期调整的方法：“Cyclical Learning Rates”，简称“CLS”，该方法在kaggle竞赛中被广泛应用。论文链接：<a href="https://arxiv.org/abs/1506.01186" target="_blank" rel="noopener">https://arxiv.org/abs/1506.01186</a> 。</p><a id="more"></a> <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>训练一个深度神经网络是一个很难的求解全局最优的问题。求解全局最优时，我们通常使用随机梯度下降法（stochastic gradient descent）来更新权重$\theta$，公式如下：<br>$$\theta ^ { t } = \theta ^ { t - 1 } - \epsilon _ { t } \frac { \partial L } { \partial \theta }$$<br>其中，$L$是损失函数（loss function），$\epsilon _ { t }$是学习率（learning rate）。太小的学习率会使收敛速度变得很慢，太大的学习率会导致模型无法收敛（diverge），因此选择一个合适的学习率显得尤为重要。<br>传统观点认为，学习率应该是一个在训练过程中单调递减的值。本文论证了在训练过程中改变学习速率总体上是有益的，因此本文建议让全局学习速率在一定范围内循环变化，而不是将其设置为固定值。</p><h2 id="Cyclical-Learning-Rates"><a href="#Cyclical-Learning-Rates" class="headerlink" title="Cyclical Learning Rates"></a>Cyclical Learning Rates</h2><p>算法有三个参数，分别是：max_lr、base_lr、step_size，即上下边界和步长。下图即为学习率的变化情况：<br><img src="/images/2018-11-29-1.png" alt="avatar"></p><p>那么这三个参数是如何选取的呢？<br>假设有5w个训练样本，batchsize=100，则每个epoch有500次迭代，实验结果表明step_size设置为2~8倍的迭代次数比较合适。<br>使用 triangular 策略还给我们带来的一个好处是我们可以知道什么时候停止训练：我们可以采用周期性的lr进行训练3回，然后再继续训练4次甚至更多，能够达到很好的效果。<br>那么怎么去选择 base_lr,max_lr两个参数呢？先将max_lr设置为step_size同样的值，base_lr为原架构的初始值，然后以此迭代5到10个epoch，画学习率与准确率之间的关系图，找最开始收敛的点和收敛后第一个下降的点，记录下来作为base_lr和max_lr的值。  </p><p>论文中介绍了三种CLR的方法：triangular、triangular2和exp range</p><ol><li><strong>triangular</strong><br>首先计算当前迭代次数属于哪个 cycle，然后计算上图中每个点其具体的lr值是多少，建立坐标后，开始计算点(x,y)，我们知道了当前cycle，每个cycle的iter是 2<em>cycle</em>step_size，然后再用当前 iterations 减去这个值，y要区分是上升还是下降阶段。<br><img src="/images/2018-11-29-2.png" alt="avatar"></li></ol><pre><code>cycle = np.floor(1+iterations/(2*step_size)) x = np.abs(iterations/step_size - 2*cycle + 1)lr = base_lr + (max_lr-base_lr)*np.maximum(0, (1-x))</code></pre><ol start="2"><li><strong>triangular2</strong><br>每个新的cycle，新的max_lr都减半<br><img src="/images/2018-11-29-3.png" alt="avatar"></li><li><strong>exp range</strong><br>每个新的cycle，新的max_lr指数下降<br><img src="/images/2018-11-29-4.png" alt="avatar"></li></ol>]]></content>
     
@@ -36,11 +36,11 @@
       <category term="Learning Rate" scheme="http://yoursite.com/categories/Paper-Notes/Learning-Rate/"/>
     
     
-      <category term="Papers Notes" scheme="http://yoursite.com/tags/Papers-Notes/"/>
-    
       <category term="Deep Learning" scheme="http://yoursite.com/tags/Deep-Learning/"/>
     
       <category term="Learning Rate" scheme="http://yoursite.com/tags/Learning-Rate/"/>
+    
+      <category term="Papers Notes" scheme="http://yoursite.com/tags/Papers-Notes/"/>
     
   </entry>
   
@@ -65,11 +65,11 @@
       <category term="Summarization" scheme="http://yoursite.com/categories/Paper-Notes/Summarization/"/>
     
     
+      <category term="Papers Notes" scheme="http://yoursite.com/tags/Papers-Notes/"/>
+    
       <category term="NLP" scheme="http://yoursite.com/tags/NLP/"/>
     
       <category term="Summarization" scheme="http://yoursite.com/tags/Summarization/"/>
-    
-      <category term="Papers Notes" scheme="http://yoursite.com/tags/Papers-Notes/"/>
     
   </entry>
   
@@ -106,9 +106,9 @@
     <link href="http://yoursite.com/2018/09/28/LeetCode-26-80-Remove-Duplicates-from-Sorted-Array/"/>
     <id>http://yoursite.com/2018/09/28/LeetCode-26-80-Remove-Duplicates-from-Sorted-Array/</id>
     <published>2018-09-28T04:58:30.000Z</published>
-    <updated>2018-11-05T04:46:11.023Z</updated>
+    <updated>2018-12-01T10:18:04.041Z</updated>
     
-    <content type="html"><![CDATA[<p>LeetCode 26题与80题，两者很相似，都是在有序数组中去除重复项。题目如下：<br><a id="more"></a> </p><h2 id="26-Remove-Duplicates-from-Sorted-Array（删除排序数组中的重复项）"><a href="#26-Remove-Duplicates-from-Sorted-Array（删除排序数组中的重复项）" class="headerlink" title="26. Remove Duplicates from Sorted Array（删除排序数组中的重复项）"></a>26. Remove Duplicates from Sorted Array（删除排序数组中的重复项）</h2><blockquote></blockquote><p>English：<br>Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length.<br>Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.<br>中文：<br>给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。</p><p>本题考察数组的基本操作。做法是维护两个指针，一个保留当前有效元素的长度，一个从前往后扫，然后跳过那些重复的元素。因为数组是有序的，所以重复元素一定相邻，不需要额外记录。时间复杂度是O(n)，空间复杂度O(1)。代码如下：</p><pre><code>class Solution {public:  int removeDuplicates(vector&lt;int&gt;&amp; nums) {      if (nums.size() &lt;= 1) return nums.size();      int index = 1;      for (int i = 1; i &lt; nums.size(); i++){          if (nums[i] != nums[index - 1])              nums[index++] = nums[i];              }      return index;  } };</code></pre><h2 id="80-Remove-Duplicates-from-Sorted-Array-II（删除排序数组中的重复项-II）"><a href="#80-Remove-Duplicates-from-Sorted-Array-II（删除排序数组中的重复项-II）" class="headerlink" title="80. Remove Duplicates from Sorted Array II（删除排序数组中的重复项 II）"></a>80. Remove Duplicates from Sorted Array II（删除排序数组中的重复项 II）</h2><blockquote><p>English：<br>Given a sorted array nums, remove the duplicates in-place such that duplicates appeared at most twice and return the new length.<br>Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.<br>中文：<br>给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素最多出现两次，返回移除后数组的新长度。<br>不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。</p></blockquote><p>和26题很相似，唯一的区别是允许每个元素最多出现两次，思路和26题是相同的，只需要将其中的1改为2即可。类似的，如果有其他的题目要求“允许每个元素最多出现n次”，将1改为n即可。代码如下：  </p><pre><code>class Solution {public:  int removeDuplicates(vector&lt;int&gt;&amp; nums) {      if (nums.size() &lt;= 2) return nums.size();      int index = 2;      for (int i = 2; i &lt; nums.size(); i++){          if (nums[i] != nums[index - 2])              nums[index++] = nums[i];              }      return index;    }  };</code></pre>]]></content>
+    <content type="html"><![CDATA[<p>LeetCode 26题与80题，两者很相似，都是在有序数组中去除重复项。题目如下：<br><a id="more"></a> </p><h2 id="26-Remove-Duplicates-from-Sorted-Array（删除排序数组中的重复项）"><a href="#26-Remove-Duplicates-from-Sorted-Array（删除排序数组中的重复项）" class="headerlink" title="26. Remove Duplicates from Sorted Array（删除排序数组中的重复项）"></a>26. Remove Duplicates from Sorted Array（删除排序数组中的重复项）</h2><blockquote><p>English：<br>Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length.<br>Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.<br>中文：<br>给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。</p></blockquote><p>本题考察数组的基本操作。做法是维护两个指针，一个保留当前有效元素的长度，一个从前往后扫，然后跳过那些重复的元素。因为数组是有序的，所以重复元素一定相邻，不需要额外记录。时间复杂度是O(n)，空间复杂度O(1)。代码如下：</p><pre><code>class Solution {public:  int removeDuplicates(vector&lt;int&gt;&amp; nums) {      if (nums.size() &lt;= 1) return nums.size();      int index = 1;      for (int i = 1; i &lt; nums.size(); i++){          if (nums[i] != nums[index - 1])              nums[index++] = nums[i];              }      return index;  } };</code></pre><h2 id="80-Remove-Duplicates-from-Sorted-Array-II（删除排序数组中的重复项-II）"><a href="#80-Remove-Duplicates-from-Sorted-Array-II（删除排序数组中的重复项-II）" class="headerlink" title="80. Remove Duplicates from Sorted Array II（删除排序数组中的重复项 II）"></a>80. Remove Duplicates from Sorted Array II（删除排序数组中的重复项 II）</h2><blockquote><p>English：<br>Given a sorted array nums, remove the duplicates in-place such that duplicates appeared at most twice and return the new length.<br>Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.<br>中文：<br>给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素最多出现两次，返回移除后数组的新长度。<br>不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。</p></blockquote><p>和26题很相似，唯一的区别是允许每个元素最多出现两次，思路和26题是相同的，只需要将其中的1改为2即可。类似的，如果有其他的题目要求“允许每个元素最多出现n次”，将1改为n即可。代码如下：  </p><pre><code>class Solution {public:  int removeDuplicates(vector&lt;int&gt;&amp; nums) {      if (nums.size() &lt;= 2) return nums.size();      int index = 2;      for (int i = 2; i &lt; nums.size(); i++){          if (nums[i] != nums[index - 2])              nums[index++] = nums[i];              }      return index;    }  };</code></pre>]]></content>
     
     <summary type="html">
     
