@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-12-02T11:28:52.398Z</updated>
+  <updated>2018-12-04T15:57:48.471Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>[数据结构与算法] 二叉树简介</title>
+    <link href="http://yoursite.com/2018/12/03/%5B%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%5D%20%E4%BA%8C%E5%8F%89%E6%A0%91%E7%AE%80%E4%BB%8B/"/>
+    <id>http://yoursite.com/2018/12/03/[数据结构与算法] 二叉树简介/</id>
+    <published>2018-12-03T06:01:35.000Z</published>
+    <updated>2018-12-04T15:57:48.471Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p><strong>树</strong> 是一种经常用到的数据结构，用来模拟具有树状结构性质的数据集合。  </p><p>树里的每一个节点有一个根植和一个包含所有子节点的列表。从图的观点来看，树也可视为一个拥有 <strong><em>N</em></strong> 个节点和 <strong><em>N-1</em></strong>  条边的一个有向无环图。</p><p><strong><em>二叉树</em></strong> 是一种更为典型的树树状结构。如它名字所描述的那样，二叉树是每个节点最多有 <strong><em>两个子树</em></strong> 的树结构，通常子树被称作 <strong><em>“左子树”</em></strong> 和 <strong><em>“右子树”</em></strong>。</p><a id="more"></a> <h1 id="二叉树的表示"><a href="#二叉树的表示" class="headerlink" title="二叉树的表示"></a>二叉树的表示</h1><p>在C++中，我们使用一个结构体来表示二叉树，包括：当前节点的值（val），左子树指针（TreeNode <em>left），右子树指针（TreeNode </em>right），结构体的构造函数（ TreeNode(int x) ），代码如下：</p><pre><code>struct TreeNode {  int val;  TreeNode *left;  TreeNode *right;  TreeNode(int x) : val(x), left(NULL), right(NULL) {}};</code></pre><p>本文的所有代码，默认使用此结构体表示二叉树。</p><h1 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h1><p>我们经常希望访问树中的每一个结点并且查看它的值。有很多常见的顺序来访问所有的结点，而且每一种都有有用的性质。  </p><p>二叉树的遍历有三种方式：前序遍历、中序遍历和后序遍历。其中，“前序”、“中序”、“后序”指的是访问根节点的顺序。L、D、R分别表示遍历左子树、访问根结点和遍历右子树，则先(根)序遍历二叉树的顺序是DLR，中(根)序遍历二叉树的顺序是LDR，后(根)序遍历二叉树的顺序是LRD。还有按层遍历二叉树。这些方法的时间复杂度都是O(n)，n为结点个数</p><ul><li>前序遍历首先访问根节点，然后遍历左子树，最后遍历右子树。</li><li>中序遍历是先遍历左子树，然后访问根节点，然后遍历右子树。</li><li>后序遍历是先遍历左子树，然后遍历右子树，最后访问树的根节点。</li></ul><p>在下图这个二叉树中，</p><p><img src="/images/2018-12-4-BinaryTree.png" alt="avatar"></p><ul><li>前序遍历的结果：M，G，D，B，A，C，F，E，J，H，I，K，L，S，P，O，N，Q，R，W，U，T，V，X，Z，Y</li><li>后序遍历的结果：A，C，B，E，F，D，I，H，L，K，J，G，N，O，R，Q，P，T，V，U，Y，Z，X，W，S，M</li><li>中序遍历的结果：A，B，C，D，E，F，G，H，I，J，K，L，M，N，O，P，Q，R，S，T，U，V，W，X，Y，Z</li></ul><p>下面介绍三种遍历方法的C++实现</p><h2 id="二叉树的前序遍历"><a href="#二叉树的前序遍历" class="headerlink" title="二叉树的前序遍历"></a>二叉树的前序遍历</h2><p><a href="https://leetcode-cn.com/problems/binary-tree-preorder-traversal/" target="_blank" rel="noopener">[LeetCode 144] 二叉树的前序遍历</a></p><h3 id="递归版"><a href="#递归版" class="headerlink" title="递归版"></a>递归版</h3><pre><code>class Solution {public:vector&lt;int&gt; preorderTraversal(TreeNode* root) {    vector&lt;int&gt; result;    if(root != NULL){        result.push_back(root-&gt;val);        vector&lt;int&gt; left = preorderTraversal(root-&gt;left);        result.insert(result.end(), left.begin(), left.end());        vector&lt;int&gt; right = preorderTraversal(root-&gt;right);        result.insert(result.end(), right.begin(), right.end());        }    return result;    }};</code></pre><h3 id="迭代版"><a href="#迭代版" class="headerlink" title="迭代版"></a>迭代版</h3><pre><code>class Solution {public:    vector&lt;int&gt; preorderTraversal(TreeNode *root) {        vector&lt;int&gt; result;        if(root == NULL)        {            return result;        }        std::stack&lt;TreeNode*&gt; nodeStack;        nodeStack.push(root);        while(!nodeStack.empty())        {            // 先遍历根节点            TreeNode *node = nodeStack.top();            result.push_back(node-&gt;val);            nodeStack.pop();            // 先将当前节点的右子树压入栈中，            // 然后压入左子树            // 这样就可以先遍历左子树            if(node-&gt;right)            {                nodeStack.push(node-&gt;right);            }            if(node-&gt;left)            {                nodeStack.push(node-&gt;left);            }        }        return result;    }};</code></pre><h2 id="二叉树的中序遍历"><a href="#二叉树的中序遍历" class="headerlink" title="二叉树的中序遍历"></a>二叉树的中序遍历</h2><p><a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/" target="_blank" rel="noopener">[LeetCode 94] 二叉树的中序遍历</a></p><h3 id="递归版-1"><a href="#递归版-1" class="headerlink" title="递归版"></a>递归版</h3><pre><code>class Solution {public:    vector&lt;int&gt; inorderTraversal(TreeNode* root) {        vector&lt;int&gt; result;        if(root!=NULL){            vector&lt;int&gt; left = inorderTraversal(root-&gt;left);            result.insert(result.end(), left.begin(), left.end());            result.push_back(root-&gt;val);            vector&lt;int&gt; right = inorderTraversal(root-&gt;right);            result.insert(result.end(), right.begin(), right.end());        }      return result;    }};</code></pre><h3 id="迭代版-1"><a href="#迭代版-1" class="headerlink" title="迭代版"></a>迭代版</h3><pre><code>class Solution {public:    vector&lt;int&gt; inorderTraversal(TreeNode* root) {        vector&lt;int&gt; result;        if(root == NULL)        {            return result;        }        std::stack&lt;TreeNode*&gt; nodeStack;        while (!nodeStack.empty() || root != NULL) {            if (root != NULL) {                // 将左子树的节点依次入栈                nodeStack.push(root);                root = root-&gt;left;            }            // 访问到叶子节点            else {                // 将栈顶节点的数值放入result中                root = nodeStack.top();                result.push_back((nodeStack.top())-&gt;val);                nodeStack.pop();                //栈顶节点（相当于当前的根节点）已被遍历，然后遍历右子树                // 如果root-&gt;right为null，说明当前节点无右子树，                //下一轮循环，栈顶元素弹出，遍历其父节点                root = root-&gt;right;        }    }    return result;}</code></pre><p>};</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;介绍&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;树&lt;/strong&gt; 是一种经常用到的数据结构，用来模拟具有树状结构性质的数据集合。  &lt;/p&gt;
+&lt;p&gt;树里的每一个节点有一个根植和一个包含所有子节点的列表。从图的观点来看，树也可视为一个拥有 &lt;strong&gt;&lt;em&gt;N&lt;/em&gt;&lt;/strong&gt; 个节点和 &lt;strong&gt;&lt;em&gt;N-1&lt;/em&gt;&lt;/strong&gt;  条边的一个有向无环图。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;二叉树&lt;/em&gt;&lt;/strong&gt; 是一种更为典型的树树状结构。如它名字所描述的那样，二叉树是每个节点最多有 &lt;strong&gt;&lt;em&gt;两个子树&lt;/em&gt;&lt;/strong&gt; 的树结构，通常子树被称作 &lt;strong&gt;&lt;em&gt;“左子树”&lt;/em&gt;&lt;/strong&gt; 和 &lt;strong&gt;&lt;em&gt;“右子树”&lt;/em&gt;&lt;/strong&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="数据结构与算法" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="二叉树" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+      <category term="数据结构与算法" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="二叉树" scheme="http://yoursite.com/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    
+  </entry>
   
   <entry>
     <title>[论文笔记] 学习率周期调整方法——Cyclical Learning Rates</title>
@@ -78,7 +110,7 @@
     <link href="http://yoursite.com/2018/11/05/%5BLeetCode%20136%5D%20Single%20Number/"/>
     <id>http://yoursite.com/2018/11/05/[LeetCode 136] Single Number/</id>
     <published>2018-11-05T04:30:38.000Z</published>
-    <updated>2018-11-05T04:42:43.192Z</updated>
+    <updated>2018-12-03T06:05:35.697Z</updated>
     
     <content type="html"><![CDATA[<p>给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。<br><a id="more"></a> </p><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><blockquote></blockquote><p>English：<br>Given an array of integers, every element appears twice except for one. Find that single one.<br>Note:<br>Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?  </p><blockquote><p>中文：<br>给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。<br>说明：<br>你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？  </p></blockquote><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>异或（^）的几个性质：</p><ul><li><strong>顺序无关</strong>：多个元素异或的结果与元素的顺序无关。</li><li><strong>同一个数异或两次等于没有异或</strong>：如4 ^ 3 ^ 4 = 3。</li><li><strong>个数与0异或的结果为其本身</strong>：如3 ^ 0 = 3。  </li></ul><p>了解了这些性质，这道题就很简单了。result初始值设为0，将数组中每个元素都与result作异或并更新result，最终result的值就是那个唯一只出现一次的元素了。代码如下：</p><pre><code>class Solution {public:    int singleNumber(vector&lt;int&gt; &amp;nums) {        int result = 0;        for (auto num:nums) {            result ^= num;        }    return result;    }};</code></pre>]]></content>
     
@@ -88,12 +120,12 @@
     
     </summary>
     
-      <category term="leetcode" scheme="http://yoursite.com/categories/leetcode/"/>
+      <category term="数据结构与算法" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
-      <category term="数组" scheme="http://yoursite.com/categories/leetcode/%E6%95%B0%E7%BB%84/"/>
+      <category term="数组" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E7%BB%84/"/>
     
     
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
       <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
     
@@ -106,7 +138,7 @@
     <link href="http://yoursite.com/2018/09/28/LeetCode-26-80-Remove-Duplicates-from-Sorted-Array/"/>
     <id>http://yoursite.com/2018/09/28/LeetCode-26-80-Remove-Duplicates-from-Sorted-Array/</id>
     <published>2018-09-28T04:58:30.000Z</published>
-    <updated>2018-12-01T10:18:04.041Z</updated>
+    <updated>2018-12-03T06:05:23.913Z</updated>
     
     <content type="html"><![CDATA[<p>LeetCode 26题与80题，两者很相似，都是在有序数组中去除重复项。题目如下：<br><a id="more"></a> </p><h2 id="26-Remove-Duplicates-from-Sorted-Array（删除排序数组中的重复项）"><a href="#26-Remove-Duplicates-from-Sorted-Array（删除排序数组中的重复项）" class="headerlink" title="26. Remove Duplicates from Sorted Array（删除排序数组中的重复项）"></a>26. Remove Duplicates from Sorted Array（删除排序数组中的重复项）</h2><blockquote><p>English：<br>Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length.<br>Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.<br>中文：<br>给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。</p></blockquote><p>本题考察数组的基本操作。做法是维护两个指针，一个保留当前有效元素的长度，一个从前往后扫，然后跳过那些重复的元素。因为数组是有序的，所以重复元素一定相邻，不需要额外记录。时间复杂度是O(n)，空间复杂度O(1)。代码如下：</p><pre><code>class Solution {public:  int removeDuplicates(vector&lt;int&gt;&amp; nums) {      if (nums.size() &lt;= 1) return nums.size();      int index = 1;      for (int i = 1; i &lt; nums.size(); i++){          if (nums[i] != nums[index - 1])              nums[index++] = nums[i];              }      return index;  } };</code></pre><h2 id="80-Remove-Duplicates-from-Sorted-Array-II（删除排序数组中的重复项-II）"><a href="#80-Remove-Duplicates-from-Sorted-Array-II（删除排序数组中的重复项-II）" class="headerlink" title="80. Remove Duplicates from Sorted Array II（删除排序数组中的重复项 II）"></a>80. Remove Duplicates from Sorted Array II（删除排序数组中的重复项 II）</h2><blockquote><p>English：<br>Given a sorted array nums, remove the duplicates in-place such that duplicates appeared at most twice and return the new length.<br>Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.<br>中文：<br>给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素最多出现两次，返回移除后数组的新长度。<br>不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。</p></blockquote><p>和26题很相似，唯一的区别是允许每个元素最多出现两次，思路和26题是相同的，只需要将其中的1改为2即可。类似的，如果有其他的题目要求“允许每个元素最多出现n次”，将1改为n即可。代码如下：  </p><pre><code>class Solution {public:  int removeDuplicates(vector&lt;int&gt;&amp; nums) {      if (nums.size() &lt;= 2) return nums.size();      int index = 2;      for (int i = 2; i &lt; nums.size(); i++){          if (nums[i] != nums[index - 2])              nums[index++] = nums[i];              }      return index;    }  };</code></pre>]]></content>
     
@@ -116,12 +148,12 @@
     
     </summary>
     
-      <category term="leetcode" scheme="http://yoursite.com/categories/leetcode/"/>
+      <category term="数据结构与算法" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
-      <category term="数组" scheme="http://yoursite.com/categories/leetcode/%E6%95%B0%E7%BB%84/"/>
+      <category term="数组" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E7%BB%84/"/>
     
     
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
       <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
     
