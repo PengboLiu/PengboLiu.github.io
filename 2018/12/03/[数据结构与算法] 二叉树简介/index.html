@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="PengboLiu&#39;s BLOG">
 <meta property="og:description" content="介绍树 是一种经常用到的数据结构，用来模拟具有树状结构性质的数据集合。   树里的每一个节点有一个根植和一个包含所有子节点的列表。从图的观点来看，树也可视为一个拥有 N 个节点和 N-1  条边的一个有向无环图。 二叉树 是一种更为典型的树树状结构。如它名字所描述的那样，二叉树是每个节点最多有 两个子树 的树结构，通常子树被称作 “左子树” 和 “右子树”。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-06T16:53:55.772Z">
+<meta property="og:updated_time" content="2018-12-06T16:56:08.167Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[数据结构与算法] 二叉树简介">
 <meta name="twitter:description" content="介绍树 是一种经常用到的数据结构，用来模拟具有树状结构性质的数据集合。   树里的每一个节点有一个根植和一个包含所有子节点的列表。从图的观点来看，树也可视为一个拥有 N 个节点和 N-1  条边的一个有向无环图。 二叉树 是一种更为典型的树树状结构。如它名字所描述的那样，二叉树是每个节点最多有 两个子树 的树结构，通常子树被称作 “左子树” 和 “右子树”。">
@@ -412,14 +412,8 @@
 <p>树里的每一个节点有一个根植和一个包含所有子节点的列表。从图的观点来看，树也可视为一个拥有 <strong><em>N</em></strong> 个节点和 <strong><em>N-1</em></strong>  条边的一个有向无环图。</p>
 <p><strong><em>二叉树</em></strong> 是一种更为典型的树树状结构。如它名字所描述的那样，二叉树是每个节点最多有 <strong><em>两个子树</em></strong> 的树结构，通常子树被称作 <strong><em>“左子树”</em></strong> 和 <strong><em>“右子树”</em></strong>。</p>
 <a id="more"></a> 
-<h1 id="二叉树的表示"><a href="#二叉树的表示" class="headerlink" title="二叉树的表示"></a>二叉树的表示</h1><p>在C++中，我们使用一个结构体来表示二叉树，包括：当前节点的值（val），左子树指针（TreeNode <em>left），右子树指针（TreeNode </em>right），结构体的构造函数（ TreeNode(int x) ），代码如下：</p>
-<pre><code>struct TreeNode {
-  int val;
-  TreeNode *left;
-  TreeNode *right;
-  TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
-</code></pre><p>本文的所有代码，默认使用此结构体表示二叉树。</p>
+<h1 id="二叉树的表示"><a href="#二叉树的表示" class="headerlink" title="二叉树的表示"></a>二叉树的表示</h1><p>在C++中，我们使用一个结构体来表示二叉树，包括：当前节点的值（val），左子树指针（TreeNode <em>left），右子树指针（TreeNode </em>right），结构体的构造函数（ TreeNode(int x) ），代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> &#123;</span></span><br><span class="line">  <span class="keyword">int</span> val;</span><br><span class="line">  TreeNode *left;</span><br><span class="line">  TreeNode *right;</span><br><span class="line">  TreeNode(<span class="keyword">int</span> x) : val(x), left(<span class="literal">NULL</span>), right(<span class="literal">NULL</span>) &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>本文的所有代码，默认使用此结构体表示二叉树。</p>
 <h1 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h1><p>我们经常希望访问树中的每一个结点并且查看它的值。有很多常见的顺序来访问所有的结点，而且每一种都有有用的性质。  </p>
 <p>二叉树的遍历有三种方式：前序遍历、中序遍历和后序遍历。其中，“前序”、“中序”、“后序”指的是访问根节点的顺序。L、D、R分别表示遍历左子树、访问根结点和遍历右子树，则先(根)序遍历二叉树的顺序是DLR，中(根)序遍历二叉树的顺序是LDR，后(根)序遍历二叉树的顺序是LRD。还有按层遍历二叉树。这些方法的时间复杂度都是O(n)，n为结点个数</p>
 <ul>
@@ -435,117 +429,15 @@
 </ul>
 <p>下面介绍三种遍历方法的C++实现</p>
 <h2 id="二叉树的前序遍历"><a href="#二叉树的前序遍历" class="headerlink" title="二叉树的前序遍历"></a>二叉树的前序遍历</h2><p><a href="https://leetcode-cn.com/problems/binary-tree-preorder-traversal/" target="_blank" rel="noopener">[LeetCode 144] 二叉树的前序遍历</a></p>
-<h3 id="递归版"><a href="#递归版" class="headerlink" title="递归版"></a>递归版</h3><pre><code>class Solution {
-public:
-vector&lt;int&gt; preorderTraversal(TreeNode* root) {
-
-    vector&lt;int&gt; result;
-
-    if(root != NULL){
-        result.push_back(root-&gt;val);
-
-        vector&lt;int&gt; left = preorderTraversal(root-&gt;left);
-        result.insert(result.end(), left.begin(), left.end());
-
-        vector&lt;int&gt; right = preorderTraversal(root-&gt;right);
-        result.insert(result.end(), right.begin(), right.end());
-
-        }
-
-    return result;
-    }
-};
-</code></pre><h3 id="迭代版"><a href="#迭代版" class="headerlink" title="迭代版"></a>迭代版</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; preorderTraversal(TreeNode *root) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; result;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">stack</span>&lt;TreeNode*&gt; nodeStack;</span><br><span class="line">        nodeStack.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!nodeStack.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 先遍历根节点</span></span><br><span class="line">            TreeNode *node = nodeStack.top();</span><br><span class="line">            result.push_back(node-&gt;val);</span><br><span class="line">            nodeStack.pop();</span><br><span class="line">            <span class="comment">// 先将当前节点的右子树压入栈中，</span></span><br><span class="line">            <span class="comment">// 然后压入左子树</span></span><br><span class="line">            <span class="comment">// 这样就可以先遍历左子树</span></span><br><span class="line">            <span class="keyword">if</span>(node-&gt;right)</span><br><span class="line">            &#123;</span><br><span class="line">                nodeStack.push(node-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;left)</span><br><span class="line">            &#123;</span><br><span class="line">                nodeStack.push(node-&gt;left);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="递归版"><a href="#递归版" class="headerlink" title="递归版"></a>递归版</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; preorderTraversal(TreeNode* root) &#123;</span><br><span class="line">   </span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; result;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(root != <span class="literal">NULL</span>)&#123;</span><br><span class="line">        result.push_back(root-&gt;val);</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; left = preorderTraversal(root-&gt;left);</span><br><span class="line">        result.insert(result.end(), left.begin(), left.end());</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; right = preorderTraversal(root-&gt;right);</span><br><span class="line">        result.insert(result.end(), right.begin(), right.end());</span><br><span class="line">        </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="迭代版"><a href="#迭代版" class="headerlink" title="迭代版"></a>迭代版</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; preorderTraversal(TreeNode *root) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; result;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">stack</span>&lt;TreeNode*&gt; nodeStack;</span><br><span class="line">        nodeStack.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!nodeStack.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 先遍历根节点</span></span><br><span class="line">            TreeNode *node = nodeStack.top();</span><br><span class="line">            result.push_back(node-&gt;val);</span><br><span class="line">            nodeStack.pop();</span><br><span class="line">            <span class="comment">// 先将当前节点的右子树压入栈中，</span></span><br><span class="line">            <span class="comment">// 然后压入左子树</span></span><br><span class="line">            <span class="comment">// 这样就可以先遍历左子树</span></span><br><span class="line">            <span class="keyword">if</span>(node-&gt;right)</span><br><span class="line">            &#123;</span><br><span class="line">                nodeStack.push(node-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;left)</span><br><span class="line">            &#123;</span><br><span class="line">                nodeStack.push(node-&gt;left);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h2 id="二叉树的中序遍历"><a href="#二叉树的中序遍历" class="headerlink" title="二叉树的中序遍历"></a>二叉树的中序遍历</h2><p><a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/" target="_blank" rel="noopener">[LeetCode 94] 二叉树的中序遍历</a></p>
-<h3 id="递归版-1"><a href="#递归版-1" class="headerlink" title="递归版"></a>递归版</h3><pre><code>class Solution {
-public:
-    vector&lt;int&gt; inorderTraversal(TreeNode* root) {
-        vector&lt;int&gt; result;
-        if(root!=NULL){
-            vector&lt;int&gt; left = inorderTraversal(root-&gt;left);
-            result.insert(result.end(), left.begin(), left.end());
+<h3 id="递归版-1"><a href="#递归版-1" class="headerlink" title="递归版"></a>递归版</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; inorderTraversal(TreeNode* root) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; result;</span><br><span class="line">        <span class="keyword">if</span>(root!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; left = inorderTraversal(root-&gt;left);</span><br><span class="line">            result.insert(result.end(), left.begin(), left.end());</span><br><span class="line">        </span><br><span class="line">            result.push_back(root-&gt;val);</span><br><span class="line">        </span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; right = inorderTraversal(root-&gt;right);</span><br><span class="line">            result.insert(result.end(), right.begin(), right.end());</span><br><span class="line">        &#125;  </span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="迭代版-1"><a href="#迭代版-1" class="headerlink" title="迭代版"></a>迭代版</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; inorderTraversal(TreeNode* root) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; result;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">stack</span>&lt;TreeNode*&gt; nodeStack;</span><br><span class="line">        <span class="keyword">while</span> (!nodeStack.empty() || root != <span class="literal">NULL</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (root != <span class="literal">NULL</span>) &#123;</span><br><span class="line">                <span class="comment">// 将左子树的节点依次入栈</span></span><br><span class="line">                nodeStack.push(root);</span><br><span class="line">                root = root-&gt;left;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 访问到叶子节点</span></span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 将栈顶节点的数值放入result中</span></span><br><span class="line">                root = nodeStack.top();</span><br><span class="line">                result.push_back((nodeStack.top())-&gt;val);</span><br><span class="line">                nodeStack.pop();</span><br><span class="line">                <span class="comment">// 栈顶节点（相当于当前的根节点）已被遍历，然后遍历右子树</span></span><br><span class="line">                <span class="comment">// 如果root-&gt;right为null，说明当前节点无右子树，</span></span><br><span class="line">                <span class="comment">// 下一轮循环，栈顶元素弹出，遍历其父节点</span></span><br><span class="line">                root = root-&gt;right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="二叉树的后序遍历"><a href="#二叉树的后序遍历" class="headerlink" title="二叉树的后序遍历"></a>二叉树的后序遍历</h2><p><a href="https://leetcode-cn.com/problems/binary-tree-postorder-traversal/" target="_blank" rel="noopener">[LeetCode 145] 二叉树的后序遍历</a></p>
+<h3 id="递归版-2"><a href="#递归版-2" class="headerlink" title="递归版"></a>递归版</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; postorderTraversal(TreeNode* root) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; result;</span><br><span class="line">        <span class="keyword">if</span>(root!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; left = postorderTraversal(root-&gt;left);</span><br><span class="line">            result.insert(result.end(), left.begin(), left.end());</span><br><span class="line">        </span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; right = postorderTraversal(root-&gt;right);</span><br><span class="line">            result.insert(result.end(), right.begin(), right.end());</span><br><span class="line">        </span><br><span class="line">            result.push_back(root-&gt;val);   </span><br><span class="line">    &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="迭代版-2"><a href="#迭代版-2" class="headerlink" title="迭代版"></a>迭代版</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; postorderTraversal(TreeNode* root) &#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;TreeNode*&gt; <span class="built_in">stack</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; result;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> result;</span><br><span class="line">        <span class="built_in">stack</span>.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!<span class="built_in">stack</span>.empty()) &#123;</span><br><span class="line">            TreeNode *node = <span class="built_in">stack</span>.top();</span><br><span class="line">            <span class="keyword">if</span>(!node-&gt;left&amp;&amp;!node-&gt;right) &#123;</span><br><span class="line">                result.push_back(node-&gt;val);</span><br><span class="line">                <span class="built_in">stack</span>.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;right) &#123;</span><br><span class="line">                <span class="built_in">stack</span>.push(node-&gt;right);</span><br><span class="line">                node-&gt;right = <span class="literal">NULL</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;left) &#123;</span><br><span class="line">                <span class="built_in">stack</span>.push(node-&gt;left);</span><br><span class="line">                node-&gt;left = <span class="literal">NULL</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;     </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-            result.push_back(root-&gt;val);
-
-            vector&lt;int&gt; right = inorderTraversal(root-&gt;right);
-            result.insert(result.end(), right.begin(), right.end());
-        }  
-    return result;
-    }
-};
-</code></pre><h3 id="迭代版-1"><a href="#迭代版-1" class="headerlink" title="迭代版"></a>迭代版</h3><pre><code>class Solution {
-public:
-    vector&lt;int&gt; inorderTraversal(TreeNode* root) {
-        vector&lt;int&gt; result;
-        if(root == NULL)
-        {
-            return result;
-        }
-        std::stack&lt;TreeNode*&gt; nodeStack;
-        while (!nodeStack.empty() || root != NULL) {
-            if (root != NULL) {
-                // 将左子树的节点依次入栈
-                nodeStack.push(root);
-                root = root-&gt;left;
-            }
-            // 访问到叶子节点
-            else {
-                // 将栈顶节点的数值放入result中
-                root = nodeStack.top();
-                result.push_back((nodeStack.top())-&gt;val);
-                nodeStack.pop();
-                // 栈顶节点（相当于当前的根节点）已被遍历，然后遍历右子树
-                // 如果root-&gt;right为null，说明当前节点无右子树，
-                // 下一轮循环，栈顶元素弹出，遍历其父节点
-                root = root-&gt;right;
-            }
-        }
-        return result;
-    }
-};
-</code></pre><h2 id="二叉树的后序遍历"><a href="#二叉树的后序遍历" class="headerlink" title="二叉树的后序遍历"></a>二叉树的后序遍历</h2><p><a href="https://leetcode-cn.com/problems/binary-tree-postorder-traversal/" target="_blank" rel="noopener">[LeetCode 145] 二叉树的后序遍历</a></p>
-<h3 id="递归版-2"><a href="#递归版-2" class="headerlink" title="递归版"></a>递归版</h3><pre><code>class Solution {
-public:
-    vector&lt;int&gt; postorderTraversal(TreeNode* root) {
-        vector&lt;int&gt; result;
-        if(root!=NULL){
-            vector&lt;int&gt; left = postorderTraversal(root-&gt;left);
-            result.insert(result.end(), left.begin(), left.end());
-
-            vector&lt;int&gt; right = postorderTraversal(root-&gt;right);
-            result.insert(result.end(), right.begin(), right.end());
-
-            result.push_back(root-&gt;val);   
-    }
-        return result;
-    }
-};
-</code></pre><h3 id="迭代版-2"><a href="#迭代版-2" class="headerlink" title="迭代版"></a>迭代版</h3><pre><code>class Solution {
-public:
-    vector&lt;int&gt; postorderTraversal(TreeNode* root) {
-        stack&lt;TreeNode*&gt; stack;
-        vector&lt;int&gt; result;
-        if(!root) return result;
-        stack.push(root);
-        while(!stack.empty()) {
-            TreeNode *node = stack.top();
-            if(!node-&gt;left&amp;&amp;!node-&gt;right) {
-                result.push_back(node-&gt;val);
-                stack.pop();
-            }
-            if(node-&gt;right) {
-                stack.push(node-&gt;right);
-                node-&gt;right = NULL;
-            }
-            if(node-&gt;left) {
-                stack.push(node-&gt;left);
-                node-&gt;left = NULL;
-            }
-        }
-        return result;
-    }     
-};
-</code></pre>
       
     </div>
     
