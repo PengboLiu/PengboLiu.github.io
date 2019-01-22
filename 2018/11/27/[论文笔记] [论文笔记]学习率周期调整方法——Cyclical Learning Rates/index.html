@@ -91,7 +91,7 @@
 <meta property="og:image" content="http://yoursite.com/images/2018-11-29-2.png">
 <meta property="og:image" content="http://yoursite.com/images/2018-11-29-3.png">
 <meta property="og:image" content="http://yoursite.com/images/2018-11-29-4.png">
-<meta property="og:updated_time" content="2018-12-02T11:28:52.398Z">
+<meta property="og:updated_time" content="2019-01-22T02:36:28.752Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[论文笔记] 学习率周期调整方法——Cyclical Learning Rates">
 <meta name="twitter:description" content="论文概述本文是论文《Cyclical Learning Rates for Training Neural Networks》的学习笔记。论文提出了学习率（learning rate）周期调整的方法：“Cyclical Learning Rates”，简称“CLS”，该方法在kaggle竞赛中被广泛应用。论文链接：https://arxiv.org/abs/1506.01186 。">
@@ -423,9 +423,9 @@
 <ol>
 <li><strong>triangular</strong><br>首先计算当前迭代次数属于哪个 cycle，然后计算上图中每个点其具体的lr值是多少，建立坐标后，开始计算点(x,y)，我们知道了当前cycle，每个cycle的iter是 2<em>cycle</em>step_size，然后再用当前 iterations 减去这个值，y要区分是上升还是下降阶段。<br><img src="/images/2018-11-29-2.png" alt="avatar"></li>
 </ol>
-<pre><code>cycle = np.floor(1+iterations/(2*step_size)) 
-x = np.abs(iterations/step_size - 2*cycle + 1)
-lr = base_lr + (max_lr-base_lr)*np.maximum(0, (1-x))
+<pre><code>    cycle = np.floor(1+iterations/(2*step_size)) 
+    x = np.abs(iterations/step_size - 2*cycle + 1)
+    lr = base_lr + (max_lr-base_lr)*np.maximum(0, (1-x))
 </code></pre><ol>
 <li><strong>triangular2</strong><br>每个新的cycle，新的max_lr都减半<br><img src="/images/2018-11-29-3.png" alt="avatar"></li>
 <li><strong>exp range</strong><br>每个新的cycle，新的max_lr指数下降<br><img src="/images/2018-11-29-4.png" alt="avatar"></li>
@@ -588,7 +588,7 @@ lr = base_lr + (max_lr-base_lr)*np.maximum(0, (1-x))
               
               
               <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
+                <a href="/tags/index 17.46.07.html">
                   <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
@@ -652,7 +652,7 @@ lr = base_lr + (max_lr-base_lr)*np.maximum(0, (1-x))
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
