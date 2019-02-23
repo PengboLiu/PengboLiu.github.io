@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Python,NLTK," />
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="刘朋伯写字的地方">
-<meta property="og:type" content="website">
-<meta property="og:title" content="PengboLiu&#39;s BLOG">
-<meta property="og:url" content="http://yoursite.com/categories/Paper-Notes/index.html">
+<meta name="description" content="Stemmers在英语中，一个单词常常是另一个单词的“变种”，如：happy=&amp;gt;happiness，这里happy叫做happiness的词干（stem）。在信息检索系统中，我们常常做的一件事，就是在Term规范化过程中，提取词干（stemming），即除去英文单词分词变换形式的结尾。">
+<meta name="keywords" content="Python,NLTK">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NLTK中的Stemmers">
+<meta property="og:url" content="http://yoursite.com/2019/02/23/NLTK中的Stemmers/index.html">
 <meta property="og:site_name" content="PengboLiu&#39;s BLOG">
-<meta property="og:description" content="刘朋伯写字的地方">
+<meta property="og:description" content="Stemmers在英语中，一个单词常常是另一个单词的“变种”，如：happy=&amp;gt;happiness，这里happy叫做happiness的词干（stem）。在信息检索系统中，我们常常做的一件事，就是在Term规范化过程中，提取词干（stemming），即除去英文单词分词变换形式的结尾。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-23T04:35:16.396Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PengboLiu&#39;s BLOG">
-<meta name="twitter:description" content="刘朋伯写字的地方">
+<meta name="twitter:title" content="NLTK中的Stemmers">
+<meta name="twitter:description" content="Stemmers在英语中，一个单词常常是另一个单词的“变种”，如：happy=&amp;gt;happiness，这里happy叫做happiness的词干（stem）。在信息检索系统中，我们常常做的一件事，就是在Term规范化过程中，提取词干（stemming），即除去英文单词分词变换形式的结尾。">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/Paper-Notes/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/02/23/NLTK中的Stemmers/"/>
 
 
 
 
 
-  <title>分类: Paper Notes | PengboLiu's BLOG</title>
+  <title>NLTK中的Stemmers | PengboLiu's BLOG</title>
   
 
 
@@ -143,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -281,83 +283,190 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Paper Notes<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/23/NLTK中的Stemmers/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Patrick Liu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/head.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PengboLiu's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/11/27/[论文笔记] [论文笔记]学习率周期调整方法——Cyclical Learning Rates/" itemprop="url">
-              
-                <span itemprop="name">[论文笔记] 学习率周期调整方法——Cyclical Learning Rates</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">NLTK中的Stemmers</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-11-27T22:12:50+08:00"
-              content="2018-11-27" >
-          11-27
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-23T12:35:08+08:00">
+                2019-02-23
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/23/NLTK中的Stemmers/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/02/23/NLTK中的Stemmers/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/13/[论文笔记] 抽取式自动文本摘要模型——SummaRuNNer/" itemprop="url">
-              
-                <span itemprop="name">[论文笔记] 抽取式自动文本摘要模型——SummaRuNNer</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-11-13T11:31:13+08:00"
-              content="2018-11-13" >
-          11-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <h1 id="Stemmers"><a href="#Stemmers" class="headerlink" title="Stemmers"></a>Stemmers</h1><p>在英语中，一个单词常常是另一个单词的“变种”，如：happy=&gt;happiness，这里happy叫做happiness的词干（stem）。在信息检索系统中，我们常常做的一件事，就是在Term规范化过程中，提取词干（stemming），即除去英文单词分词变换形式的结尾。<br><a id="more"></a> </p>
+<p>本文主要介绍nltk中Stemmer的用法</p>
+<h3 id="Porter-Stemmer"><a href="#Porter-Stemmer" class="headerlink" title="Porter Stemmer"></a>Porter Stemmer</h3><p>应用最为广泛的、中等复杂程度的、基于后缀剥离的词干提取算法是波特词干算法，也叫波特词干器（Porter Stemmer）。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.stem.porter <span class="keyword">import</span> *</span><br><span class="line">stemmer = PorterStemmer()</span><br><span class="line">plurals = [<span class="string">'caresses'</span>, <span class="string">'flies'</span>, <span class="string">'dies'</span>, <span class="string">'mules'</span>, <span class="string">'denied'</span>,<span class="string">'died'</span>, <span class="string">'agreed'</span>, <span class="string">'owned'</span>, <span class="string">'humbled'</span>, <span class="string">'sized'</span>,<span class="string">'meeting'</span>, <span class="string">'stating'</span>, <span class="string">'siezing'</span>, <span class="string">'itemization'</span>,<span class="string">'sensational'</span>, <span class="string">'traditional'</span>, <span class="string">'reference'</span>, <span class="string">'colonizer'</span>,<span class="string">'plotted'</span>]</span><br><span class="line">singles = [stemmer.stem(plural) <span class="keyword">for</span> plural <span class="keyword">in</span> plurals]</span><br><span class="line">print(<span class="string">' '</span>.join(singles))</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">output: caress fli die mule deni die agre own humbl size meet</span></span><br><span class="line"><span class="string">state siez item sensat tradit refer colon plot</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h3 id="Snowball-stemmer"><a href="#Snowball-stemmer" class="headerlink" title="Snowball stemmer"></a>Snowball stemmer</h3><p>雪球词干算法（不知道该怎么翻译=.=）支持多种语言<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> nltk.stem.snowball <span class="keyword">import</span> SnowballStemmer</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">" "</span>.join(SnowballStemmer.languages))</span><br><span class="line">danish dutch english finnish french german hungarian italian</span><br><span class="line">norwegian porter portuguese romanian russian spanish swedish</span><br></pre></td></tr></table></figure></p>
+<p>以英语为例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>stemmer = SnowballStemmer(<span class="string">"english"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(stemmer.stem(<span class="string">"running"</span>))</span><br><span class="line">run</span><br></pre></td></tr></table></figure></p>
+<p>可以设置忽略停用词：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>stemmer2 = SnowballStemmer(<span class="string">"english"</span>, ignore_stopwords=<span class="keyword">True</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(stemmer.stem(<span class="string">"having"</span>))</span><br><span class="line">have</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(stemmer2.stem(<span class="string">"having"</span>))</span><br><span class="line">having</span><br></pre></td></tr></table></figure></p>
+<p>一般来说，SnowballStemmer(“english”)要比PorterStemmer()更准确。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(SnowballStemmer(<span class="string">"english"</span>).stem(<span class="string">"generously"</span>))</span><br><span class="line">generous</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(SnowballStemmer(<span class="string">"porter"</span>).stem(<span class="string">"generously"</span>))</span><br><span class="line">gener</span><br></pre></td></tr></table></figure></p>
+<h3 id="LancasterStemmer"><a href="#LancasterStemmer" class="headerlink" title="LancasterStemmer"></a>LancasterStemmer</h3><p>也是一种词干提取器，直接看代码吧。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> nltk.stem.lancaster <span class="keyword">import</span> LancasterStemmer</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lancaster_stemmer = LancasterStemmer()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lancaster_stemmer.stem(‘maximum’)</span><br><span class="line">‘maxim’</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lancaster_stemmer.stem(‘presumably’)</span><br><span class="line">‘presum’</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lancaster_stemmer.stem(‘presumably’)</span><br><span class="line">‘presum’</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lancaster_stemmer.stem(‘multiply’)</span><br><span class="line">‘multiply’</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lancaster_stemmer.stem(‘provision’)</span><br><span class="line">u’provid’</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lancaster_stemmer.stem(‘owed’)</span><br><span class="line">‘ow’</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/NLTK/" rel="tag"># NLTK</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/10/[数据结构与算法] 二叉树的应用/" rel="next" title="[数据结构与算法] 二叉树的应用">
+                <i class="fa fa-chevron-left"></i> [数据结构与算法] 二叉树的应用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -365,6 +474,20 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -385,8 +508,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -460,6 +592,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Stemmers"><span class="nav-number">1.</span> <span class="nav-text">Stemmers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Porter-Stemmer"><span class="nav-number">1.0.1.</span> <span class="nav-text">Porter Stemmer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Snowball-stemmer"><span class="nav-number">1.0.2.</span> <span class="nav-text">Snowball stemmer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LancasterStemmer"><span class="nav-number">1.0.3.</span> <span class="nav-text">LancasterStemmer</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -600,6 +748,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -617,6 +769,18 @@
       <script id="dsq-count-scr" src="https://Patrick.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2019/02/23/NLTK中的Stemmers/';
+          this.page.identifier = '2019/02/23/NLTK中的Stemmers/';
+          this.page.title = 'NLTK中的Stemmers';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://Patrick.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
